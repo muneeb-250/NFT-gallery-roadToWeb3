@@ -1,0 +1,29 @@
+@import '../../../index.css';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px var(--paddingHorizontal);
+}
+
+.header>h1 {
+    color: white;
+    font-family: 'Berkshire Swash';
+    font-size: 34px;
+}
+
+.header>button {
+    color: white;
+    background-color: var(--highlightText);
+    padding: 12px var(--paddingHorizontal);
+    border-radius: 5px;
+    font-weight: 800;
+    border: 1px solid var(--whiteBorder);
+}
+
+.header>button:hover {
+    background-color: var(--textColor);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.1);
+    transition: .1s all ease;
+}
