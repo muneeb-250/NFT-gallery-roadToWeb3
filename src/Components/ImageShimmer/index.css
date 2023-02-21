@@ -1,0 +1,20 @@
+.image-shimmer {
+    position: relative;
+}
+
+.shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+    transform: translate3d(-100%, 0, 0);
+    animation: shimmer 1s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translate3d(100%, 0, 0);
+    }
+}

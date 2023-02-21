@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom';
 import './index.css'
-import Home from './assets/Components/Home/Home';
+import Home from './Components/Home/Home';
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>

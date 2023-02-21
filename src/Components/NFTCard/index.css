@@ -1,0 +1,51 @@
+@import '../../index.css';
+
+.card {
+    position: relative;
+    background-color: var(--boxColor);
+    margin: 12px;
+    width: var(--cardWidth);
+    overflow: hidden;
+    /* padding: 15px; */
+    color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    /* max-height: calc(var(--cardWidth) + 200px); */
+    padding-bottom: 50px;
+}
+
+.card .card__image img {
+    width: var(--cardWidth);
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.card .card__info {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    color: white;
+    padding: 0 12px;
+    margin-bottom: 10px;
+}
+
+.card .card__info .card__title {
+    font-weight: 900;
+}
+
+.card .card__description {
+    padding: 0 12px;
+}
+
+.card a {
+    position: absolute;
+    background-color: dodgerblue;
+    color: white;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    padding: 12px 24px;
+}

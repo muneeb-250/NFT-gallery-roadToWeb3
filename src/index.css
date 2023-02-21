@@ -10,6 +10,8 @@
     radial-gradient(at 75% 40%, hsla(222, 47%, 11%, 1) 0px, transparent 50%),
     radial-gradient(at 100% 0%, hsla(218, 51%, 21%, 1) 0px, transparent 50%),
     radial-gradient(at 0% 100%, hsla(218, 51%, 21%, 1) 0px, transparent 50%);
+  background-size: cover;
+  background-attachment: fixed;
   /* background: linear-gradient(to bottom, var(--topColor), var(--bottomColor)); */
   height: 100%;
   --topColor: #1a2e52;
@@ -19,4 +21,5 @@
   --textColor: #78c9f1;
   --paddingHorizontal: 28px;
   --whiteBorder: #aaa;
+  --cardWidth: 300px;
 }
