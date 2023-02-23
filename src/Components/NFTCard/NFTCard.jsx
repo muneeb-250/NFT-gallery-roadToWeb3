@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import CopyIcon from '../../assets/copy.png';
+// address for challenge 2: 0x38140b7F622E5C3c2F11d4531718B6ED892bD235
 const NFTCard = ({ nft }) => {
     const descSlicer = desc => {
         const words = desc.split(' ');

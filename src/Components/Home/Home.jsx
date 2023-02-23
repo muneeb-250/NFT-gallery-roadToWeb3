@@ -82,8 +82,8 @@ const Home = () => {
             nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
         }
         if (nfts) {
-            console.log("NFTs in collection:", nfts)
-            setNFTs(nfts.nfts);
+            console.log("nfts:", nfts)
+            setNFTs(nfts.ownedNfts);
         }
     }
 
@@ -96,20 +96,20 @@ const Home = () => {
                     <input value={wallet} disabled={fetchForCollection} onChange={(e) => setWalletAddress(e.target.value)} type="text" placeholder="Add your wallet address"></input>
                     <input value={collection} onChange={(e) => setCollectionAddress(e.target.value)} type="text" placeholder="Add the collection address"></input>
                     <label className="text-white"><input type={"checkbox"} className="mr-2" value={fetchForCollection} onChange={(e) => setFetchForCollection(e.target.checked)}></input>Fetch for collection</label>
-                    <button className='text-white' onClick={handleFetch}>Let's go! </button>
+                    <button className='text-white' onClick={handleFetch}>Let's go!</button>
                 </div>
             </div>
             <br />
             {loading && (<h1>Fetching...</h1>)}
-            <div className='flex-card'>
-                {
-                    NFTs.length && NFTs.map(nft => {
-                        return (
-                            <NFTCard nft={nft}></NFTCard>
-                        )
-                    })
-                }
-            </div>
+            {NFTs && (
+                <div className='flex-card'>
+                    {NFTs.length && NFTs.map(nft => (
+                        <NFTCard nft={nft} />
+                    ))}
+                </div>
+            )}
+
+
             {
                 pageKey ? <button onClick={fetchNextPage}>Next Page</button> : <h1>end of results</h1>
             }
