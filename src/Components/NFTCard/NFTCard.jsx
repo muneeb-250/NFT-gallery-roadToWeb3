@@ -1,11 +1,21 @@
 import React from 'react'
 import './index.css'
+import CopyIcon from '../../assets/copy.png';
 const NFTCard = ({ nft }) => {
     const descSlicer = desc => {
         const words = desc.split(' ');
         const slicedWords = words.slice(0, 12);
         const result = slicedWords.join(' ');
         return result;
+    }
+    const handleCopy = () => {
+        navigator.clipboard.writeText(nft.contract.address)
+            .then(() => {
+                alert("Address copied to clipboard");
+            })
+            .catch((error) => {
+                console.error("Failed to copy address: ", error);
+            });
     }
     return (
         <div className="card">
@@ -20,7 +30,10 @@ const NFTCard = ({ nft }) => {
             <div className="card__description">
                 <strong>Description: <br /></strong>
                 {descSlicer(nft.description)}...
+                <img src={CopyIcon} alt="copy-address" onClick={handleCopy} className="card__img" />
             </div>
+
+
             <a target="_blank" href={`https://etherscan.io/token/${nft.contract.address}`} className="nft__link">View on Etherscan</a>
         </div>
     )

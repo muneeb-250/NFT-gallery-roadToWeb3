@@ -16,8 +16,10 @@
 
 .card .card__image img {
     width: var(--cardWidth);
+    height: var(--cardWidth);
     object-fit: contain;
     margin-bottom: 15px;
+    background-color: dodgerblue;
 }
 
 .card .card__info {
@@ -48,4 +50,13 @@
     width: 100%;
     text-align: center;
     padding: 12px 24px;
+}
+
+.card .card__img {
+    margin: 10px auto;
+    width: 30px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../Header/Header';
 import NFTCard from '../NFTCard/NFTCard';
 import './index.css'
@@ -8,10 +9,13 @@ const Home = () => {
     const [collection, setCollectionAddress] = useState("");
     const [NFTs, setNFTs] = useState([]);
     const [fetchForCollection, setFetchForCollection] = useState(false);
+    const [pageKey, setPageKey] = useState();
+    const [loading, setLoading] = useState(false);
 
     //Fetch NFTs function
     const fetchNFTs = async () => {
         let nfts;
+        setLoading(true);
         console.log("fetching nfts");
         const baseURL = `https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_API}/getNFTs/`;
         var requestOptions = {
@@ -21,15 +25,23 @@ const Home = () => {
         if (!collection.length) {
             const fetchURL = `${baseURL}?owner=${wallet}`;
             nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
-        } else {
+        }
+        // else if (!collection.length && pageKey) {
+        //     const fetchURL = `${baseURL}?owner=${wallet}?pagekey=${pageKey}`;
+        //     nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+        // }
+
+        else {
             console.log("fetching nfts for collection owned by address")
             const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${collection}`;
             nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
         }
 
         if (nfts) {
+            setLoading(false);
             console.log("nfts:", nfts)
             setNFTs(nfts.ownedNfts)
+            setPageKey(nfts.pageKey);
         }
     }
 
@@ -45,6 +57,7 @@ const Home = () => {
             if (nfts) {
                 console.log("NFTs in collection:", nfts)
                 setNFTs(nfts.nfts);
+
             }
         }
     }
@@ -54,6 +67,23 @@ const Home = () => {
             fetchNFTsForCollection();
         } else {
             fetchNFTs();
+        }
+    }
+    // https://eth-mainnet.g.alchemy.com/nft/v2/docs-demo/getNFTs?owner=0xd45058Bf25BBD8F586124C479D384c8C708CE23A&pageKey=MHgwNDE5NzkxYjc4NzRmN2JiNzE5YWNjNTIxYTRkYzhmOTVkNzg4MGQ1OjB4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwNmU1MjpmYWxzZQ%3D%3D&pageSize=100&withMetadata=false
+    const fetchNextPage = async () => {
+        let nfts;
+        const baseURL = `https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_API}/getNFTs/`;
+        var requestOptions = {
+            method: 'GET'
+        };
+        if (pageKey) {
+            console.log('fetching more results')
+            const fetchURL = `${baseURL}?owner=${wallet}&?pagekey=${pageKey}`;
+            nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+        }
+        if (nfts) {
+            console.log("NFTs in collection:", nfts)
+            setNFTs(nfts.nfts);
         }
     }
 
@@ -69,6 +99,8 @@ const Home = () => {
                     <button className='text-white' onClick={handleFetch}>Let's go! </button>
                 </div>
             </div>
+            <br />
+            {loading && (<h1>Fetching...</h1>)}
             <div className='flex-card'>
                 {
                     NFTs.length && NFTs.map(nft => {
@@ -78,8 +110,11 @@ const Home = () => {
                     })
                 }
             </div>
-        </div>
+            {
+                pageKey ? <button onClick={fetchNextPage}>Next Page</button> : <h1>end of results</h1>
+            }
+        </div >
     )
 }
 
-export default Home
+export default Home;
