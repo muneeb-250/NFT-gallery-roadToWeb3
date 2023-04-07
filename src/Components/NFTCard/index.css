@@ -19,7 +19,7 @@
     height: var(--cardWidth);
     object-fit: contain;
     margin-bottom: 15px;
-    background-color: dodgerblue;
+    background-color: var(--highlightText);
 }
 
 .card .card__info {

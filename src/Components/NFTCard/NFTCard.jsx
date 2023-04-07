@@ -21,7 +21,7 @@ const NFTCard = ({ nft }) => {
     return (
         <div className="card">
             <div className="card__image">
-                <img src={nft.media[0].gateway} alt="nft__image" />
+                <img src={nft.media[0].gateway} alt={nft.title} />
             </div>
             <div className="card__info">
                 <div className="card__title">{nft.title}</div>

@@ -90,7 +90,7 @@ const Home = () => {
     return (
         <div className="home">
             <Header />
-            <h1 className='text-center text-3xl mt-10 text-white'>NFT GALLERY</h1>
+            <h1 className='text-center text-5xl mt-10 text-gradient'>NFT GALLERY</h1>
             <div className="flex flex-col items-center justify-center py-8 gap-y-3">
                 <div className="flex flex-col w-full justify-center items-center gap-y-2">
                     <input value={wallet} disabled={fetchForCollection} onChange={(e) => setWalletAddress(e.target.value)} type="text" placeholder="Add your wallet address"></input>
