@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Header from '../Header/Header';
 import NFTCard from '../NFTCard/NFTCard';
+import heroImg from '../../hero.png'
 import './index.css'
+
 
 const Home = () => {
     const [wallet, setWalletAddress] = useState("");
@@ -89,12 +90,13 @@ const Home = () => {
 
     return (
         <div className="home">
+            <img src={heroImg} className='absolute object-cover -top-20 w-screen h-[calc(100vh+162px)] md:h-[calc(100vh+120px)] -z-[10]' />
             <Header />
-            <h1 className='text-center text-5xl mt-10 text-gradient'>NFT GALLERY</h1>
+            <h1 className='text-center text-7xl mt-10 font-black text-gradient__gray '>NFT GALLERY</h1>
             <div className="flex flex-col items-center justify-center py-8 gap-y-3">
                 <div className="flex flex-col w-full justify-center items-center gap-y-2">
-                    <input value={wallet} disabled={fetchForCollection} onChange={(e) => setWalletAddress(e.target.value)} type="text" placeholder="Add your wallet address"></input>
-                    <input value={collection} onChange={(e) => setCollectionAddress(e.target.value)} type="text" placeholder="Add the collection address"></input>
+                    <input className='blue-glassmorphism' value={wallet} disabled={fetchForCollection} onChange={(e) => setWalletAddress(e.target.value)} type="text" placeholder="Add your wallet address"></input>
+                    <input className='blue-glassmorphism' value={collection} onChange={(e) => setCollectionAddress(e.target.value)} type="text" placeholder="Add the collection address"></input>
                     <label className="text-white"><input type={"checkbox"} className="mr-2" value={fetchForCollection} onChange={(e) => setFetchForCollection(e.target.checked)}></input>Fetch for collection</label>
                     <button className='text-white' onClick={handleFetch}>Let's go!</button>
                 </div>
@@ -111,7 +113,7 @@ const Home = () => {
 
 
             {
-                pageKey ? <button onClick={fetchNextPage}>Next Page</button> : <h1>end of results</h1>
+                pageKey ? <button onClick={fetchNextPage}>Next Page</button> : <h1>End of results</h1>
             }
         </div >
     )

@@ -1,32 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100;0,200;0,300;0,400;0,500;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  font-family: 'Courier New', Courier, monospace;
   line-height: 1.5;
   font-weight: 400;
-  background-color: #0f0e13;
-  background-color: hsla(222, 47%, 11%, 1);
-  background-color: hsla(222, 47%, 11%, 1);
-  background-image:
-    radial-gradient(at 19% 55%, hsla(222, 47%, 11%, 1) 0px, transparent 50%),
-    radial-gradient(at 75% 40%, hsla(222, 47%, 11%, 1) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(218, 51%, 21%, 1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(218, 51%, 21%, 1) 0px, transparent 50%);
+  background-color: #262a33;
   background-size: cover;
   background-attachment: fixed;
-  /* background: linear-gradient(to bottom, var(--topColor), var(--bottomColor)); */
   height: 100%;
+  --primaryColor: #262a33;
   --topColor: #1a2e52;
   --bottomColor: #0f172a;
   --boxColor: #1e293b;
-  --highlightText: #283b4f;
+  --highlightText: rgba(255, 255, 255, 0.05);
   --textColor: #78c9f1;
   --paddingHorizontal: 28px;
   --whiteBorder: #aaa;
   --cardWidth: 300px;
 }
-
-
-/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"); */
 
 * html {
   padding: 0;
@@ -36,7 +26,7 @@
 
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -76,7 +66,7 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* white glassmorphism */
@@ -103,6 +93,15 @@ body {
 .text-gradient {
   background-color: #fff;
   background-image: radial-gradient(at 4% 36%, hsla(0, 0%, 100%, 1) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.text-gradient__gray {
+  padding-right: 0.05em;
+  background-image: linear-gradient(207deg, #fff 23%, rgb(85, 85, 85) 87%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

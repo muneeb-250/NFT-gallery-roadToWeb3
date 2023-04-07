@@ -8,22 +8,33 @@
 }
 
 .header>h1 {
-    color: white;
-    font-family: 'Berkshire Swash';
+    color: #ccdae7;
+    font-family: 'Inter Tight';
     font-size: 34px;
+    font-weight: 900;
+    cursor: pointer;
 }
 
-.header>button {
-    color: white;
-    background-color: var(--highlightText);
+.header>button.connect {
+
+    /* color: white;
+    background-color: var(--primaryColor);
     padding: 12px var(--paddingHorizontal);
     border-radius: 5px;
     font-weight: 800;
-    border: 1px solid var(--whiteBorder);
+    border: 1px solid var(--whiteBorder); */
+    background: rgb(39, 51, 89, 0.4);
+    text-transform: uppercase;
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .header>button:hover {
-    background-color: var(--textColor);
+    /* background-color: var(--textColor); */
+    background-color: dodgerblue;
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.1);
     transition: .1s all ease;
 }
