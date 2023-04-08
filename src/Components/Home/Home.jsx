@@ -1,49 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../Header/Header';
 import NFTCard from '../NFTCard/NFTCard';
 import heroImg from '../../hero.png'
 import './index.css'
+import AboutMe from '../AboutMe/AboutMe';
 
 
 const Home = () => {
     const [wallet, setWalletAddress] = useState("");
     const [collection, setCollectionAddress] = useState("");
-    const [NFTs, setNFTs] = useState([]);
+    const [NFTs, setNFTs] = useState();
     const [fetchForCollection, setFetchForCollection] = useState(false);
     const [pageKey, setPageKey] = useState();
     const [loading, setLoading] = useState(false);
 
     //Fetch NFTs function
     const fetchNFTs = async () => {
-        let nfts;
-        setLoading(true);
-        console.log("fetching nfts");
-        const baseURL = `https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_API}/getNFTs/`;
-        var requestOptions = {
-            method: 'GET'
-        };
+        try {
+            let nfts;
+            setLoading(true);
+            console.log("fetching nfts");
+            const baseURL = `https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.VITE_ALCHEMY_API}/getNFTs/`;
+            var requestOptions = {
+                method: 'GET'
+            };
 
-        if (!collection.length) {
-            const fetchURL = `${baseURL}?owner=${wallet}`;
-            nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+            if (!collection.length) {
+                const fetchURL = `${baseURL}?owner=${wallet}`;
+                nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+            }
+            else {
+                console.log("fetching nfts for collection owned by address")
+                const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${collection}`;
+                nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+            }
+
+            if (nfts) {
+                setLoading(false);
+                console.log("nfts:", nfts)
+                setNFTs(nfts.ownedNfts)
+                setPageKey(nfts.pageKey);
+            }
+        } catch (error) {
+            console.error(error.message)
+            setLoading(false);
         }
+
         // else if (!collection.length && pageKey) {
         //     const fetchURL = `${baseURL}?owner=${wallet}?pagekey=${pageKey}`;
         //     nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
         // }
 
-        else {
-            console.log("fetching nfts for collection owned by address")
-            const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${collection}`;
-            nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
-        }
 
-        if (nfts) {
-            setLoading(false);
-            console.log("nfts:", nfts)
-            setNFTs(nfts.ownedNfts)
-            setPageKey(nfts.pageKey);
-        }
+
     }
 
     //Fetch NFTs for Collection function 
@@ -87,18 +96,45 @@ const Home = () => {
             setNFTs(nfts.ownedNfts);
         }
     }
+    useEffect(() => {
+        // get the button element
+        const button = document.querySelector('.my-btn');
 
+        // define an array of possible background colors
+        const colors = ['dodgerblue', 'hotpink', 'greenyellow', 'orangered', 'blueviolet'];
+
+        // add a hover event listener to the button
+        const handleHover = () => {
+            // generate a random index from the colors array
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            // set the background color of the button to the randomly selected color
+            button.style.backgroundColor = colors[randomIndex];
+        };
+        button.addEventListener('mouseover', handleHover);
+
+        // add a mouseleave event listener to reset the background color
+        const handleMouseLeave = () => {
+            button.style.backgroundColor = '';
+        };
+        button.addEventListener('mouseleave', handleMouseLeave);
+
+        // cleanup function to remove the event listeners
+        return () => {
+            button.removeEventListener('mouseover', handleHover);
+            button.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
     return (
         <div className="home">
             <img src={heroImg} className='absolute object-cover -top-20 w-screen h-[calc(100vh+162px)] md:h-[calc(100vh+120px)] -z-[10]' />
             <Header />
-            <h1 className='text-center text-7xl mt-10 font-black text-gradient__gray '>NFT GALLERY</h1>
+            <h1 className='text-center text-5xl mt-10 font-black text-gradient__gray sm:text-7xl '>NFT GALLERY</h1>
             <div className="flex flex-col items-center justify-center py-8 gap-y-3">
                 <div className="flex flex-col w-full justify-center items-center gap-y-2">
                     <input className='blue-glassmorphism' value={wallet} disabled={fetchForCollection} onChange={(e) => setWalletAddress(e.target.value)} type="text" placeholder="Add your wallet address"></input>
                     <input className='blue-glassmorphism' value={collection} onChange={(e) => setCollectionAddress(e.target.value)} type="text" placeholder="Add the collection address"></input>
                     <label className="text-white"><input type={"checkbox"} className="mr-2" value={fetchForCollection} onChange={(e) => setFetchForCollection(e.target.checked)}></input>Fetch for collection</label>
-                    <button className='text-white' onClick={handleFetch}>Let's go!</button>
+                    <button className='text-white my-btn' onClick={handleFetch}>Let's go!</button>
                 </div>
             </div>
             <br />
@@ -106,11 +142,10 @@ const Home = () => {
             {NFTs && (
                 <div className='flex-card'>
                     {NFTs.length && NFTs.map(nft => (
-                        <NFTCard nft={nft} />
+                        <NFTCard key={nft.id.tokenId} nft={nft} />
                     ))}
                 </div>
             )}
-
 
             {
                 pageKey ? <button onClick={fetchNextPage}>Next Page</button> : <h1>End of results</h1>

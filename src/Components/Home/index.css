@@ -27,9 +27,10 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.home button:hover {
+/* .home button:hover {
     background-color: dodgerblue;
-}
+} */
+
 
 .home .flex-card {
     display: flex;
