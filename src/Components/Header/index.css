@@ -10,7 +10,7 @@
 .header>h1 {
     color: #ccdae7;
     font-family: 'Inter Tight';
-    font-size: 34px;
+    /* font-size: 34px; */
     font-weight: 900;
     cursor: pointer;
 }
