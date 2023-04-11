@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100;0,200;0,300;0,400;0,500;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   line-height: 1.5;
   font-weight: 400;
-  background-color: #262a33;
+  background: linear-gradient(90deg, #000, #12012e);
   background-size: cover;
   background-attachment: fixed;
   height: 100%;
@@ -22,6 +25,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,35 +35,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.gradient-bg-welcome {
-  background-color: #0f0e13;
-  background-image:
-    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
-}
-
-.gradient-bg-services {
-  background-color: #0f0e13;
-  background-image:
-    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-    radial-gradient(at 50% 100%, hsla(225, 39%, 25%, 1) 0, transparent 50%);
-}
-
-.gradient-bg-transactions {
-  background-color: #0f0e13;
-  background-image:
-    radial-gradient(at 0% 100%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-    radial-gradient(at 50% 0%, hsla(225, 39%, 25%, 1) 0, transparent 50%);
-}
-
-.gradient-bg-footer {
-  background-color: #0f0e13;
-  background-image:
-    radial-gradient(at 0% 100%, hsla(253, 16%, 7%, 1) 0, transparent 53%),
-    radial-gradient(at 50% 150%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
-}
-
 .blue-glassmorphism {
   background: rgb(39, 51, 89, 0.4);
   border-radius: 16px;
@@ -67,27 +42,6 @@ body {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* white glassmorphism */
-.white-glassmorphism {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.eth-card {
-  background-color: #a099ff;
-  background-image:
-    radial-gradient(at 83% 67%, rgb(152, 231, 156) 0, transparent 58%),
-    radial-gradient(at 67% 20%, hsla(357, 94%, 71%, 1) 0, transparent 59%),
-    radial-gradient(at 88% 35%, hsla(222, 81%, 65%, 1) 0, transparent 50%),
-    radial-gradient(at 31% 91%, hsla(9, 61%, 61%, 1) 0, transparent 52%),
-    radial-gradient(at 27% 71%, hsla(336, 91%, 65%, 1) 0, transparent 49%),
-    radial-gradient(at 74% 89%, hsla(30, 98%, 65%, 1) 0, transparent 51%),
-    radial-gradient(at 53% 75%, hsla(174, 94%, 68%, 1) 0, transparent 45%);
 }
 
 .text-gradient {
@@ -101,14 +55,12 @@ body {
 
 .text-gradient__gray {
   padding-right: 0.05em;
-  background-image: linear-gradient(207deg, #fff 23%, rgb(85, 85, 85) 87%);
+  /* background-image: linear-gradient(207deg, #fff 23%, rgb(85, 85, 85) 87%); */
+  background-image: linear-gradient(271.72deg, #62ffb3 7.09%, #81bcff 96.61%);
+  /* background-color: #8BC6EC;
+  background-image: linear-gradient(-135deg, #8BC6EC 0%, #9498e2 100%); */
+
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-/*
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities; */

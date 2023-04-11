@@ -37,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <WagmiConfig client={wagmiClient}>
     <RainbowKitProvider chains={chains} theme={darkTheme({
       borderRadius: 'small',
+      accentColor: 'hotpink',
     })}>
       <React.StrictMode>
         <App />

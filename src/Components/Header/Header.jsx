@@ -4,7 +4,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 const Header = () => {
     return (
         <div className="header">
-            <h1 className='text-xl sm:text-2xl'>MuniArtz</h1>
+            <h1 className='text-xl sm:text-2xl drop-shadow-lg'>MuniArtz</h1>
             <ConnectButton accountStatus="avatar" showBalance={false} />
         </div>
     )
