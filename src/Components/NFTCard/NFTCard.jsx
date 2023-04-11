@@ -19,7 +19,7 @@ const NFTCard = ({ nft }) => {
             });
     }
     return (
-        <div className="card">
+        <div className="card shadow-lg">
             <div className="card__image">
                 <img src={nft.media[0].gateway} alt={nft.title} />
             </div>
@@ -35,7 +35,11 @@ const NFTCard = ({ nft }) => {
             </div>
 
 
-            <a target="_blank" href={`https://etherscan.io/token/${nft.contract.address}`} className="nft__link">View on Etherscan</a>
+
+
+
+
+            <a target="_blank" href={`https://etherscan.io/token/${nft.contract.address}`} className="nft__link bg-indigo-500 hover:bg-indigo-600 duration-300 transition-all">View on Etherscan</a>
         </div>
     )
 }

@@ -12,6 +12,13 @@
     border-top-left-radius: 10px;
     /* max-height: calc(var(--cardWidth) + 200px); */
     padding-bottom: 50px;
+    transition: .2s all ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    transition: .2s all ease;
+    cursor: pointer;
 }
 
 .card .card__image img {
@@ -42,7 +49,6 @@
 
 .card a {
     position: absolute;
-    background-color: dodgerblue;
     color: white;
     bottom: 0;
     left: 50%;
