@@ -36,7 +36,7 @@ body {
 }
 
 .blue-glassmorphism {
-  background: rgb(39, 51, 89, 0.4);
+  background: rgba(51, 67, 117, 0.4);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(5px);
@@ -45,20 +45,8 @@ body {
 }
 
 .text-gradient {
-  background-color: #fff;
-  background-image: radial-gradient(at 4% 36%, hsla(0, 0%, 100%, 1) 0, transparent 53%), radial-gradient(at 100% 60%, rgb(0, 0, 0) 0, transparent 50%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-}
-
-.text-gradient__gray {
   padding-right: 0.05em;
-  /* background-image: linear-gradient(207deg, #fff 23%, rgb(85, 85, 85) 87%); */
-  background-image: linear-gradient(271.72deg, #62ffb3 7.09%, #81bcff 96.61%);
-  /* background-color: #8BC6EC;
-  background-image: linear-gradient(-135deg, #8BC6EC 0%, #9498e2 100%); */
+  background-image: linear-gradient(271.72deg, #55ffad 7.09%, #6cb1ff 96.61%);
 
   -webkit-background-clip: text;
   background-clip: text;
