@@ -4,6 +4,8 @@ import NFTCard from '../NFTCard/NFTCard';
 import AboutMe from '../AboutMe/AboutMe';
 import './index.css'
 
+// import { useAccount, useNetwork, useWalletClient } from 'wagmi'
+
 
 const Home = () => {
     const [wallet, setWalletAddress] = useState("");
@@ -14,6 +16,10 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [text, setText] = useState('0xBAa4b7858C3277Da9cb9CdaDf405f2017aFea19A')
 
+    //wagmi hooks 
+    const { address, isConnected } = useAccount();
+    // const { chain } = useNetwork()
+    // const { data } = useWalletClient()
     //Fetch NFTs function
     const fetchNFTs = async () => {
         try {
@@ -25,21 +31,39 @@ const Home = () => {
                 method: 'GET'
             };
 
-            if (!collection.length) {
-                const fetchURL = `${baseURL}?owner=${wallet}`;
-                nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
-            }
-            else {
-                console.log("fetching nfts for collection owned by address")
-                const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${collection}`;
-                nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
-            }
-
-            if (nfts) {
-                setLoading(false);
-                console.log("nfts:", nfts)
-                setNFTs(nfts.ownedNfts)
-                setPageKey(nfts.pageKey);
+            if (!isConnected) {
+                if (!collection.length) {
+                    const fetchURL = `${baseURL}?owner=${wallet}`;
+                    nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+                }
+                else {
+                    console.log("fetching nfts for collection owned by address")
+                    const fetchURL = `${baseURL}?owner=${wallet}&contractAddresses%5B%5D=${collection}`;
+                    nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+                }
+                if (nfts) {
+                    setLoading(false);
+                    console.log("nfts:", nfts)
+                    setNFTs(nfts.ownedNfts)
+                    setPageKey(nfts.pageKey);
+                }
+            } else if (isConnected) {
+                setWalletAddress(address);
+                if (!collection.length) {
+                    const fetchURL = `${baseURL}?owner=${address}`;
+                    nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+                }
+                else {
+                    console.log("fetching nfts for collection owned by address")
+                    const fetchURL = `${baseURL}?owner=${address}&contractAddresses%5B%5D=${collection}`;
+                    nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+                }
+                if (nfts) {
+                    setLoading(false);
+                    console.log("nfts:", nfts)
+                    setNFTs(nfts.ownedNfts)
+                    setPageKey(nfts.pageKey);
+                }
             }
         } catch (error) {
             console.error(error.message)
@@ -67,7 +91,6 @@ const Home = () => {
             if (nfts) {
                 console.log("NFTs in collection:", nfts)
                 setNFTs(nfts.nfts);
-
             }
         }
     }
@@ -124,6 +147,13 @@ const Home = () => {
             button.removeEventListener('mouseleave', handleMouseLeave);
         };
     }, []);
+
+    // useEffect(() => {
+    //     if (isConnected && chain.id !== 1) {
+    //         data.switchChain({ id: 1 })
+    //     }
+
+    // }, [])
 
     const handleCopy = useCallback(() => {
         navigator.clipboard.writeText(text);

@@ -1,7 +1,7 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 import './index.css'
 import Home from './Components/Home/Home';
-
+import './Components/Home/index.css'
 
 function App() {
 
@@ -16,3 +16,4 @@ function App() {
 }
 
 export default App
+

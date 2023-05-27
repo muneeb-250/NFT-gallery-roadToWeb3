@@ -1,17 +1,8 @@
 .home {
-    /* background: url('../../hero.jpg') repeat center center; */
-    /* background: rgb(2, 0, 36);
-    background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
-    background-color: #0093E9;
-    background-image: linear-gradient(0deg, #0093E9 0%, #80D0C7 100%);
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-    background-color: #8BC6EC;
-    background-image: linear-gradient(135deg, #69c3ff 0%, #646ae1 100%);
     background-color: #4158D0;
-    background-image: linear-gradient(43deg, #526be7 0%, #cf62c7 46%, #FFCC70 100%);
-
-
+    background-image: linear-gradient(45deg, #4158D0 56%, #FFCC70 5%);
+    /* background-image: linear-gradient(43deg, #526be7 0%, #cf62c7 46%, #FFCC70 100%); */
+    /* background-image: url('../../assets/gradient.png') none; */
     background-attachment: fixed;
 
 }

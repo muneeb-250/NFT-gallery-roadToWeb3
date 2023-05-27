@@ -1,19 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  getDefaultWallets,
-  RainbowKitProvider,
-  darkTheme
-} from '@rainbow-me/rainbowkit';
-import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { mainnet } from 'wagmi/chains';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
-import '@rainbow-me/rainbowkit/styles.css';
 import App from './App'
 import './index.css'
 
-const { chains, provider } = configureChains(
+
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { mainnet } from 'wagmi/chains';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+
+const { chains, publicClient } = configureChains(
   [mainnet],
   [
     alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_API }),
@@ -23,22 +25,19 @@ const { chains, provider } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: 'My RainbowKit App',
+  projectId: 'haha',
   chains
 });
 
-const wagmiClient = createClient({
+const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
-  provider
+  publicClient
 })
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <WagmiConfig client={wagmiClient}>
-    <RainbowKitProvider chains={chains} theme={darkTheme({
-      borderRadius: 'small',
-      accentColor: 'hotpink',
-    })}>
+  <WagmiConfig client={wagmiConfig}>
+    <RainbowKitProvider chains={chains} >
       <React.StrictMode>
         <App />
       </React.StrictMode>

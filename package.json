@@ -9,13 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^0.12.7",
+    "@rainbow-me/rainbowkit": "^1.0.1",
     "daisyui": "^2.51.5",
     "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
-    "wagmi": "^0.12.10"
+    "viem": "^0.3.37",
+    "wagmi": "^1.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
